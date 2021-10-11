@@ -28,7 +28,7 @@
                 <br> By <a href={{ .User.Html_url }}>{{ .User.Login }}</a>
                 <br>
                 <pre>{{ .Body }}</pre>
-                <a href="/ballots/{{ .Number }}/100">Ballots</a>
+                <a href="/ballots?pr={{ .Number }}&count=100">Ballots</a>
                 <br>
                 <br>
             </div>

@@ -31,7 +31,7 @@ type User struct {
 func main() {
 	fileServer := http.FileServer(http.Dir("./public"))
 	http.HandleFunc("/", Index)
-	http.HandleFunc("/ballot", Ballot)
+	http.HandleFunc("/ballots", Ballots)
 	http.Handle("/public/", http.StripPrefix("/public", fileServer))
 	log.Println("starting webserver on port 8000")
 	log.Fatal(http.ListenAndServe(":8000", nil))
@@ -81,7 +81,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Ballot(w http.ResponseWriter, r *http.Request) {
+func Ballots(w http.ResponseWriter, r *http.Request) {
 	p, present := r.URL.Query()["pr"]
 	if !present {
 		w.Write([]byte("Specify a PR"))
