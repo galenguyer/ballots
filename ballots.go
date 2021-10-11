@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -59,5 +60,17 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte(fmt.Sprintf("nice, %d prs", len(prs))))
+	// TODO: Should find a way to handle not having any PRS... Otherwise template rendering will just crash
+	data := struct {
+		Prs []PullRequest
+	}{
+		Prs: prs,
+	}
+	tmpl := template.Must(template.ParseFiles("templates/index.html"))
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		fmt.Printf("Error executing template, %s\n", err)
+		w.Write([]byte("Oops, a fucky wucky occured"))
+		return
+	}
 }

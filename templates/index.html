@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>CSH Ballots</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-3.3.6.min.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <script src="/public/js/bootstrap-3.3.6.min.js"></script>
+</head>
+
+<body>
+
+    <header class="jumbotron" style="background-color:#A9F16C">
+        <div class="container">
+            <div class="row">
+                <h1>Welcome to the Ballots!</h1>
+            </div>
+            {{ if .Prs }} 
+            {{ range .Prs}}
+            <div class="row">
+                <h4><b>#{{ .Number }}: <a href={{ .Html_url }}>{{ .Title }}</a></b></h4>
+                <br>
+                <img src={{ .User.Avatar_url }} style="max-height: 100px; max-width: 100px;">
+                <br> By <a href={{ .User.Html_url }}>{{ .User.Login }}</a>
+                <br>
+                <pre>{{ .Body }}</pre>
+                <a href="/ballots/{{ .Number }}/100">Ballots</a>
+                <br>
+                <br>
+            </div>
+            {{ end }}
+            {{ else }} 
+                <p>No pull requests are out on the Constitution! Sad!</p> 
+            {{ end }}
+            <hr>
+            <!--
+            <div class="row">
+                <b><i>Create custom ballots!</b></i>
+                <form action="/App/CustomBallots" method="GET">
+                    <b>Ballot Question:</b>
+                    <br>
+                    <textarea rows='4' cols='40' name="prompt"></textarea><br>
+                    <b>Ballot choices (new line delimited):</b>
+                    <br>
+                    <textarea rows='4' cols='40' name="answers"></textarea><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            -->
+        </div>
+        <div class="row">
+            <center>
+                <a href="https://github.com/ComputerScienceHouse/ballots">GitHub</a>
+            </center>
+        </div>
+    </header>
+
+</body>
+
+</html>
