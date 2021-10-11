@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>CSH Ballots</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/public/css/Ballots.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-3.3.6.min.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <script src="/public/js/bootstrap-3.3.6.min.js"></script>
+</head>
+
+<body>
+        <div class="container">
+            {{ range $index, $pokemon := .Pokemons }}
+            <div>
+              <p class="header">
+                <b>{{ $.Pr.Title }}</b>
+              </p>
+              <p class="description">
+                {{ $.DiffStr }}
+              </p>
+              <p class="vote">Vote <b>YES</b> or <b>NO</b>
+              Your pokemon is # {{ $index }}: {{ $pokemon }}
+              </p>
+              <hr>
+            </div>
+            {{ end }}
+        
+        </div>
+        <div class="row">
+            <center>
+                <a href="https://github.com/ComputerScienceHouse/ballots">GitHub</a>
+            </center>
+        </div>
+    </header>
+
+</body>
+
+</html>
